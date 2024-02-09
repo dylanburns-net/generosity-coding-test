@@ -34,10 +34,14 @@ const loader = new GLTFLoader();
 
 loader.load( '/public/YellowDuck1glb.glb', function ( gltf ) {
 	scene.add( gltf.scene );
-	gltf.scene.scale.set(0.03, 0.03, 0.03);
-	const box = new THREE.Box3().setFromObject( gltf.scene );
-	var size = box.getSize(new THREE.Vector3());
-	gltf.scene.position.setY(size.y * -0.5);
+
+	//画面の高さの収まるようにモデルの高さを1に変更する
+	const boundingBox = new THREE.Box3().setFromObject( gltf.scene );
+	const size = boundingBox.getSize(new THREE.Vector3());
+	const scale = 1 / size.y;
+	gltf.scene.scale.set(scale, scale, scale);
+	//モデルを真ん中にする
+	gltf.scene.position.setY(-0.5);
 
 }, undefined, function ( error ) {
 	console.error( error );
