@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -21,6 +22,12 @@ animate();
 
 
 /*-------------------
+操作（回転、並行移動、拡大）
+--------------------*/
+const controls = new OrbitControls( camera, renderer.domElement );
+
+
+/*-------------------
 GLTFローダー
 --------------------*/
 const loader = new GLTFLoader();
@@ -28,6 +35,10 @@ const loader = new GLTFLoader();
 loader.load( '/public/YellowDuck1glb.glb', function ( gltf ) {
 	scene.add( gltf.scene );
 	gltf.scene.scale.set(0.03, 0.03, 0.03);
+	const box = new THREE.Box3().setFromObject( gltf.scene );
+	var size = box.getSize(new THREE.Vector3());
+	gltf.scene.position.setY(size.y * -0.5);
+
 }, undefined, function ( error ) {
 	console.error( error );
 } );
