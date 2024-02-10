@@ -8,6 +8,15 @@
         margin: 0;
         overflow: hidden;
       }
+      #file-upload-form{
+        position: fixed;
+        left: 10px;
+        top: 10px;
+        z-index: 999;
+      }
+      #file-upload{
+
+      }
     </style>
     <script type="importmap">
       {
@@ -19,6 +28,9 @@
     </script>
   </head>
   <body>
+    <form id="file-upload-form">
+      <input id="file-upload" type="file" accept=".glb,.gltf">
+    </form>
     <script type="module" src="/main.js"></script>
   </body>
 </html>
