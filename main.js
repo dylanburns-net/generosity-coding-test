@@ -99,3 +99,13 @@ function animate() {
 	renderer.render( scene, camera );
 }
 animate();
+
+
+/*---------------
+Window resize (画面サイズが変更される時に対応)
+----------------*/
+window.addEventListener("resize", (event) => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
