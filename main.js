@@ -15,7 +15,6 @@ camera.position.z = 1;
 const axesHelper = new THREE.AxesHelper( 5 );
 scene.add( axesHelper );
 
-function animate() {
 
 
 
