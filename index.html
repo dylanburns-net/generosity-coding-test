@@ -3,21 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>GENEROSITY技術課題</title>
-    <style>
-      body{
-        margin: 0;
-        overflow: hidden;
-      }
-      #file-upload-form{
-        position: fixed;
-        left: 10px;
-        top: 10px;
-        z-index: 999;
-      }
-      #file-upload{
-
-      }
-    </style>
+    <link rel="stylesheet" href="stylesheets/styles.css">
     <script type="importmap">
       {
         "imports": {
@@ -28,9 +14,24 @@
     </script>
   </head>
   <body>
+
     <form id="file-upload-form">
-      <input id="file-upload" type="file" accept=".glb,.gltf">
+      <div class="inner">
+        <label for="file-upload" id="file-upload-label">
+          <img src="img/ico-upload.png" alt="アップロード" width="60" class="img-icon">
+          クリックして.GLB/.GLTFファイルをアップロードする
+          <span class="small">またはファイルをドラッグアンドドロップする</span>
+        </label>
+        <input id="file-upload" type="file" accept=".glb,.gltf">
+        <div id="form-close-button" class="hidden">&#x2715;</div>
+      </div>
     </form>
+
+    <div id="upload-button" class="hidden">
+      <div class="inner"></div>
+    </div>
+
     <script type="module" src="/main.js"></script>
+
   </body>
 </html>

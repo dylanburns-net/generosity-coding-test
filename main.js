@@ -13,8 +13,8 @@ document.body.appendChild( renderer.domElement );
 
 camera.position.z = 1;
 
-const axesHelper = new THREE.AxesHelper( 5 );
-scene.add( axesHelper );
+//const axesHelper = new THREE.AxesHelper( 5 );
+//scene.add( axesHelper );
 
 
 
@@ -63,17 +63,46 @@ function adjustZoom(adjustAmount){
 }
 
 /*-------------------
+HTMLのボタンなど
+--------------------*/
+const fileUpload = document.getElementById('file-upload');
+const fileUploadForm = document.getElementById('file-upload-form');
+const fileUploadFormCloseButton = document.getElementById('form-close-button');
+const uploadButton = document.getElementById('upload-button');
+
+//右下のアップロードボタンを押す時
+uploadButton.addEventListener('click', function() {
+	//右下のボタンを非表示
+	uploadButton.classList.add("hidden");
+	//アップロード画面を表示
+	fileUploadForm.classList.remove("hidden");
+}, false);
+
+//アップロード画面の閉じるボタンを押す時
+fileUploadFormCloseButton.addEventListener('click', function() {
+	//アップロード画面を非表示
+	fileUploadForm.classList.add("hidden");
+	//右下のボタンを表示
+	uploadButton.classList.remove("hidden");
+}, false);
+
+/*-------------------
 GLTFをアップロード
 --------------------*/
 const loader = new GLTFLoader();
 var model;
 
 //ファイルアップロードする時に
-document.getElementById('file-upload').onchange = function() {
-	const uploadedFile = document.getElementById("file-upload").files[0];
+fileUpload.onchange = function() {
+	//アップロード画面を非表示
+	fileUploadForm.classList.add("hidden");
+	//アップロード画面の閉じるボタンを表示する（非表示は最初だけ）
+	fileUploadFormCloseButton.classList.remove("hidden");
 	//アップロードされたファイルでURL Blobを作る
+	const uploadedFile = fileUpload.files[0];
 	const url = URL.createObjectURL(uploadedFile);
 	loader.load( url, function ( gltf ) {
+		fileUpload.value= null;
 		URL.revokeObjectURL(url);
 		//前のモデルを削除
 		scene.remove( model );
@@ -84,11 +113,14 @@ document.getElementById('file-upload').onchange = function() {
 		model = gltf.scene;
 		//モデルを画面に収まって、真ん中にする
 		fitModelToWindow();
-
+		//右下のボタンを表示
+		uploadButton.classList.remove("hidden");
 	}, function (){  }, function (){
 		//エラーの場合
 	    URL.revokeObjectURL(url);
 	    console.log("エラーが発生しました");
+	    //右下のボタンを表示
+		uploadButton.classList.remove("hidden");
 	});
 };
 
