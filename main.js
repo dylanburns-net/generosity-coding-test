@@ -73,10 +73,21 @@ loader.load( '/public/YellowDuck1glb.glb', function ( gltf ) {
 	//画面の高さの収まるようにモデルの高さを1に変更する
 	const boundingBox = new THREE.Box3().setFromObject( gltf.scene );
 	const size = boundingBox.getSize(new THREE.Vector3());
-	const scale = 1 / size.y;
+	var scale = 1 / size.y;
 	gltf.scene.scale.set(scale, scale, scale);
 	//モデルを真ん中にする
 	gltf.scene.position.setY(-0.5);
+
+	//画面の幅にも収まるように
+	var GLTFRatio = size.x / size.y;
+	var windowRatio = window.innerWidth / window.innerHeight;
+	//GLTFの縦横比が画面の縦横比より大きい（横長い）ならそれほど小さくする
+	if(GLTFRatio > windowRatio){
+		scale = scale * (windowRatio / GLTFRatio);
+		gltf.scene.scale.set(scale, scale, scale);
+		//モデルをまた真ん中にする
+		gltf.scene.position.setY(size.y * scale * -0.5);
+	}
 
 }, undefined, function ( error ) {
 	console.error( error );
