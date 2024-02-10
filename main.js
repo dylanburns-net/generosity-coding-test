@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import * as TWEEN from "three/addons/libs/tween.module.js";
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( '#dddddd' );
@@ -25,10 +26,40 @@ const controls = new OrbitControls( camera, renderer.domElement );
 controls.listenToKeyEvents(window);
 controls.enableDamping = true;
 controls.keys = {
-	LEFT: 'ArrowRight',
-	UP: 'ArrowDown',
-	RIGHT: 'ArrowLeft',
-	BOTTOM: 'ArrowUp'
+	LEFT: 'KeyA',
+	UP: 'KeyW',
+	RIGHT: 'KeyD',
+	BOTTOM: 'KeyS'
+}
+
+
+/*-------------------
+キーボードで拡大の操作
+--------------------*/
+document.addEventListener("keydown", onDocumentKeyDown, false);
+function onDocumentKeyDown(event) {
+    var keyCode = event.which;
+    //「↑」キーを押すと拡大
+    if(keyCode==38){
+    	adjustZoom( -0.05 );
+    }
+    //「↓」キーを押すと縮小
+    else if(keyCode==40){
+    	adjustZoom( 0.05 );
+    }
+};
+
+function adjustZoom(adjustAmount){
+  var dir = new THREE.Vector3();
+  camera.getWorldDirection(dir);
+  dir.negate();
+  var dist = controls.getDistance();
+  new TWEEN.Tween({val: dist})
+    .to({val: adjustAmount + dist}, 100)
+    .onUpdate(val => {
+      camera.position.copy(controls.target).addScaledVector(dir, val.val);
+    })
+    .start();
 }
 
 /*-------------------
@@ -62,6 +93,7 @@ scene.add( ambientLight );
 Animate loop
 --------------------*/
 function animate() {
+	TWEEN.update();
 	controls.update();
 	requestAnimationFrame( animate );
 	renderer.render( scene, camera );
