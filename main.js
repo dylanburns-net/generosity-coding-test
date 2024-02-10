@@ -16,17 +16,21 @@ const axesHelper = new THREE.AxesHelper( 5 );
 scene.add( axesHelper );
 
 function animate() {
-	requestAnimationFrame( animate );
-	renderer.render( scene, camera );
-}
-animate();
+
 
 
 /*-------------------
 操作（回転、並行移動、拡大）
 --------------------*/
 const controls = new OrbitControls( camera, renderer.domElement );
-
+controls.listenToKeyEvents(window);
+controls.enableDamping = true;
+controls.keys = {
+	LEFT: 'ArrowRight',
+	UP: 'ArrowDown',
+	RIGHT: 'ArrowLeft',
+	BOTTOM: 'ArrowUp'
+}
 
 /*-------------------
 GLTFローダー
@@ -53,3 +57,14 @@ loader.load( '/public/YellowDuck1glb.glb', function ( gltf ) {
 --------------------*/
 const ambientLight = new THREE.AmbientLight( 0xFFFFFF ); //  white light
 scene.add( ambientLight );
+
+
+/*-------------------
+Animate loop
+--------------------*/
+function animate() {
+	controls.update();
+	requestAnimationFrame( animate );
+	renderer.render( scene, camera );
+}
+animate();
