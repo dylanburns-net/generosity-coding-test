@@ -70,6 +70,7 @@ const fileUpload = document.getElementById('file-upload');
 const fileUploadForm = document.getElementById('file-upload-form');
 const fileUploadFormCloseButton = document.getElementById('form-close-button');
 const uploadButton = document.getElementById('upload-button');
+const errorWindow = document.getElementById('error-window');
 
 //右下のアップロードボタンを押す時
 uploadButton.addEventListener('click', function() {
@@ -120,6 +121,10 @@ fileUpload.onchange = function() {
 		//エラーの場合
 	    URL.revokeObjectURL(url);
 	    console.log("エラーが発生しました");
+	    //エラーメッセージを表示
+	    errorWindow.classList.add("visible");
+	    //3秒後にエラーメッセージを非表示
+	    setTimeout(function(){errorWindow.classList.remove("visible");}, 3000);
 	    //右下のボタンを表示
 		uploadButton.classList.remove("hidden");
 	});

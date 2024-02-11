@@ -143,3 +143,35 @@ body {
 #upload-button .inner:hover {
   opacity: 0.7;
 }
+
+/* line 134, ../sass/styles.scss */
+#error-window {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 600px;
+  max-width: 90%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 30px;
+  padding: 50px 40px;
+  color: #FFF;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s;
+}
+/* line 151, ../sass/styles.scss */
+#error-window.visible {
+  opacity: 1;
+  transition-delay: 0.5s;
+}
+/* line 155, ../sass/styles.scss */
+#error-window .small-txt {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.3rem;
+  font-weight: normal;
+}
