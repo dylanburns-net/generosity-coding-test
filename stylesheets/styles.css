@@ -14,9 +14,10 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background: #7b94ba;
 }
 
-/* line 20, ../sass/styles.scss */
+/* line 21, ../sass/styles.scss */
 #file-upload-form {
   position: fixed;
   left: 20px;
@@ -28,12 +29,12 @@ body {
   transition: 0.5s;
   transition-timing-function: ease-in-out;
 }
-/* line 30, ../sass/styles.scss */
+/* line 31, ../sass/styles.scss */
 #file-upload-form.hidden {
   transform: translateY(-150%);
   transition-timing-function: ease-in;
 }
-/* line 34, ../sass/styles.scss */
+/* line 35, ../sass/styles.scss */
 #file-upload-form .inner {
   width: 100%;
   height: 100%;
@@ -44,11 +45,11 @@ body {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 30px;
 }
-/* line 43, ../sass/styles.scss */
+/* line 44, ../sass/styles.scss */
 #file-upload-form .inner:hover {
   background: rgba(0, 0, 0, 0.7);
 }
-/* line 46, ../sass/styles.scss */
+/* line 47, ../sass/styles.scss */
 #file-upload-form .inner #file-upload {
   display: block;
   width: 100%;
@@ -59,7 +60,7 @@ body {
   bottom: 0;
   cursor: pointer;
 }
-/* line 56, ../sass/styles.scss */
+/* line 57, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label {
   display: block;
   width: 100%;
@@ -75,19 +76,19 @@ body {
   color: #FFF;
   line-height: 1.7;
 }
-/* line 70, ../sass/styles.scss */
+/* line 71, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label .small {
   display: block;
   font-weight: normal;
   font-size: 1.3rem;
   margin-top: 5px;
 }
-/* line 76, ../sass/styles.scss */
+/* line 77, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label .img-icon {
   display: block;
   margin: 0 auto 15px;
 }
-/* line 82, ../sass/styles.scss */
+/* line 83, ../sass/styles.scss */
 #file-upload-form #form-close-button {
   position: absolute;
   right: 20px;
@@ -100,17 +101,17 @@ body {
   cursor: pointer;
   transition: opacity 0.3s;
 }
-/* line 93, ../sass/styles.scss */
+/* line 94, ../sass/styles.scss */
 #file-upload-form #form-close-button:hover {
   opacity: 0.7;
 }
-/* line 96, ../sass/styles.scss */
+/* line 97, ../sass/styles.scss */
 #file-upload-form #form-close-button.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-/* line 104, ../sass/styles.scss */
+/* line 105, ../sass/styles.scss */
 #upload-button {
   position: fixed;
   right: 20px;
@@ -120,12 +121,12 @@ body {
   transition: 0.3s;
   transition-delay: 0.6s;
 }
-/* line 112, ../sass/styles.scss */
+/* line 113, ../sass/styles.scss */
 #upload-button.hidden {
   transform: translateY(90px);
   transition-delay: 0s;
 }
-/* line 116, ../sass/styles.scss */
+/* line 117, ../sass/styles.scss */
 #upload-button .inner {
   width: 100%;
   height: 100%;
@@ -138,7 +139,7 @@ body {
   cursor: pointer;
   transition: 0.3s;
 }
-/* line 127, ../sass/styles.scss */
+/* line 128, ../sass/styles.scss */
 #upload-button .inner:hover {
   opacity: 0.7;
 }

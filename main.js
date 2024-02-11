@@ -2,9 +2,10 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import * as TWEEN from "three/addons/libs/tween.module.js";
+import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( '#dddddd' );
+scene.background = new THREE.Color( '#7b94ba' );
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
 const renderer = new THREE.WebGLRenderer();
@@ -148,6 +149,20 @@ function fitModelToWindow(){
 		model.position.setY(size.y * scale * -0.5);
 	}
 }
+
+
+/*-------------------
+HDRI
+--------------------*/
+const pmremGenerator = new THREE.PMREMGenerator( renderer );
+const hdriLoader = new RGBELoader()
+hdriLoader.load( 'public/kloofendal_43d_clear_puresky_4k.hdr', function ( texture ) {
+  const envMap = pmremGenerator.fromEquirectangular( texture ).texture;
+  texture.dispose(); 
+  scene.environment = envMap
+  scene.background = envMap;
+} );
+
 
 /*-------------------
 ライト
