@@ -21,35 +21,44 @@ body {
 #file-upload-form {
   position: fixed;
   left: 20px;
-  right: 20px;
-  top: 20px;
+  width: calc(100% - 40px);
   bottom: 20px;
+  height: calc(100% - 40px);
   z-index: 999;
   overflow: hidden;
-  transition: 0.5s;
-  transition-timing-function: ease-in-out;
-}
-/* line 31, ../sass/styles.scss */
-#file-upload-form.hidden {
-  transform: translateY(-150%);
-  transition-timing-function: ease-in;
-}
-/* line 35, ../sass/styles.scss */
-#file-upload-form .inner {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  transition: 0.3s;
-  background: rgba(0, 0, 0, 0.8);
   border-radius: 30px;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 0.5s;
 }
-/* line 44, ../sass/styles.scss */
-#file-upload-form .inner:hover {
-  background: rgba(0, 0, 0, 0.7);
+/* line 33, ../sass/styles.scss */
+#file-upload-form.minified {
+  width: 60px;
+  height: 60px;
+}
+/* line 38, ../sass/styles.scss */
+#file-upload-form.minified #form-close-button {
+  opacity: 0;
+  pointer-events: none;
+}
+/* line 42, ../sass/styles.scss */
+#file-upload-form.minified .inner {
+  opacity: 0;
+  pointer-events: none;
 }
 /* line 47, ../sass/styles.scss */
+#file-upload-form .inner {
+  width: calc(100vw - 40px);
+  height: calc(100vh - 40px);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transition: 0.3s;
+}
+/* line 56, ../sass/styles.scss */
+#file-upload-form .inner:hover #file-upload-label {
+  transform: translateY(-50%) scale(1.05);
+}
+/* line 60, ../sass/styles.scss */
 #file-upload-form .inner #file-upload {
   display: block;
   width: 100%;
@@ -60,7 +69,7 @@ body {
   bottom: 0;
   cursor: pointer;
 }
-/* line 57, ../sass/styles.scss */
+/* line 70, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label {
   display: block;
   width: 100%;
@@ -75,20 +84,21 @@ body {
   font-weight: bold;
   color: #FFF;
   line-height: 1.7;
+  transition: 0.3s;
 }
-/* line 71, ../sass/styles.scss */
+/* line 85, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label .small {
   display: block;
   font-weight: normal;
   font-size: 1.3rem;
   margin-top: 5px;
 }
-/* line 77, ../sass/styles.scss */
+/* line 91, ../sass/styles.scss */
 #file-upload-form .inner #file-upload-label .img-icon {
   display: block;
   margin: 0 auto 15px;
 }
-/* line 83, ../sass/styles.scss */
+/* line 97, ../sass/styles.scss */
 #file-upload-form #form-close-button {
   position: absolute;
   right: 20px;
@@ -99,52 +109,55 @@ body {
   width: 35px;
   text-align: center;
   cursor: pointer;
-  transition: opacity 0.3s;
+  transition: 0.3s;
 }
-/* line 94, ../sass/styles.scss */
+/* line 108, ../sass/styles.scss */
 #file-upload-form #form-close-button:hover {
-  opacity: 0.7;
+  transform: scale(1.15);
 }
-/* line 97, ../sass/styles.scss */
+/* line 111, ../sass/styles.scss */
 #file-upload-form #form-close-button.hidden {
   opacity: 0;
   pointer-events: none;
 }
 
-/* line 105, ../sass/styles.scss */
+/* line 118, ../sass/styles.scss */
 #upload-button {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 60px;
   height: 60px;
   transition: 0.3s;
-  transition-delay: 0.6s;
+  cursor: pointer;
+  transition-delay: 0.5s;
 }
-/* line 113, ../sass/styles.scss */
+/* line 127, ../sass/styles.scss */
 #upload-button.hidden {
-  transform: translateY(90px);
+  pointer-events: none;
+  opacity: 0;
   transition-delay: 0s;
 }
-/* line 117, ../sass/styles.scss */
-#upload-button .inner {
+/* line 133, ../sass/styles.scss */
+#upload-button:hover:after {
+  transform: scale(1.1);
+}
+/* line 137, ../sass/styles.scss */
+#upload-button:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
   background-image: url(../img/ico-upload.png);
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center center;
-  border-radius: 100%;
-  cursor: pointer;
   transition: 0.3s;
 }
-/* line 128, ../sass/styles.scss */
-#upload-button .inner:hover {
-  opacity: 0.7;
-}
 
-/* line 134, ../sass/styles.scss */
+/* line 152, ../sass/styles.scss */
 #error-window {
   position: fixed;
   left: 50%;
@@ -163,12 +176,12 @@ body {
   pointer-events: none;
   transition: 0.5s;
 }
-/* line 151, ../sass/styles.scss */
+/* line 169, ../sass/styles.scss */
 #error-window.visible {
   opacity: 1;
   transition-delay: 0.5s;
 }
-/* line 155, ../sass/styles.scss */
+/* line 173, ../sass/styles.scss */
 #error-window .small-txt {
   display: block;
   margin-top: 8px;

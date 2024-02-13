@@ -77,13 +77,13 @@ uploadButton.addEventListener('click', function() {
 	//右下のボタンを非表示
 	uploadButton.classList.add("hidden");
 	//アップロード画面を表示
-	fileUploadForm.classList.remove("hidden");
+	fileUploadForm.classList.remove("minified");
 }, false);
 
 //アップロード画面の閉じるボタンを押す時
 fileUploadFormCloseButton.addEventListener('click', function() {
 	//アップロード画面を非表示
-	fileUploadForm.classList.add("hidden");
+	fileUploadForm.classList.add("minified");
 	//右下のボタンを表示
 	uploadButton.classList.remove("hidden");
 }, false);
@@ -97,7 +97,7 @@ var model;
 //ファイルアップロードする時に
 fileUpload.onchange = function() {
 	//アップロード画面を非表示
-	fileUploadForm.classList.add("hidden");
+	fileUploadForm.classList.add("minified");
 	//アップロード画面の閉じるボタンを表示する（非表示は最初だけ）
 	fileUploadFormCloseButton.classList.remove("hidden");
 	//アップロードされたファイルでURL Blobを作る
