@@ -137,9 +137,6 @@ GLTFを画面に収まって、真ん中に設置する
 function fitModelToWindow(){
 	//画面の高さの収まるようにモデルの高さを1に変更する
 	const boundingBox = new THREE.Box3().setFromObject( model );
-	//const helper = new THREE.Box3Helper( box, 0xffff00 );
-	//scene.add( helper );
-	console.log(boundingBox.min.y);
 	const size = boundingBox.getSize(new THREE.Vector3());
 	//あるモデルがY:0の上に載ってる、他のあるモデルがY:0を中心にしてる。それに対応するためのoffset
 	const modelYOffset = boundingBox.min.y * -1;
